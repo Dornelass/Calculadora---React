@@ -1,11 +1,12 @@
 
-
-
 import {Conteiner,Content,Row} from './styles'
 import { Input } from './components/Input/index.js'
 import Button from './components/Button';
 import { useState } from 'react';
 
+// icon
+import { FiDelete} from "react-icons/fi";
+import { RiDeleteBinLine } from "react-icons/ri";
 
 
 function App() {
@@ -88,6 +89,18 @@ const handleDiviNumbers = () => {
 
 }
 
+const handleX2Numbers = () => {
+  if (firstNumber === '0'){
+    setFirstNumber(String(currentNumber));
+    setCurrenteNumber('0')
+    setOperation('**')
+  }else {
+    const sum = (Number (firstNumber) ** Number (currentNumber)) ;
+    setCurrenteNumber(String(sum))
+    setOperation('')
+   }
+
+}
 
 
 const  handleEquals = () => {
@@ -105,6 +118,9 @@ const  handleEquals = () => {
       case '/':
       handleDiviNumbers();
       break;
+      case '**':
+      handleX2Numbers();
+      break;
       
         
       default:
@@ -120,8 +136,9 @@ const  handleEquals = () => {
       <Input value={currentNumber}/>
       
       <Row>
-      <Button label="C"  onClick={handleClear}/>
-      <Button label="c"  onClick={handleClearOne}/>
+      <Button label=<FiDelete/>  onClick={handleClearOne}/>
+      <Button label=<RiDeleteBinLine/>  onClick={handleClear}/>
+      <Button label="x²"  onClick={handleX2Numbers}/>
       </Row>
 
       
